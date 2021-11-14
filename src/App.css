@@ -1,12 +1,19 @@
 .App {
+  width: 100vw;
   text-align: center;
 }
 
 body{
+  width: 100vw;
   font-family: 'nanumsquare';
 }
 
 .black-nav{
+  position: relative;
+  display: flex;
+  width: inherit;
+  flex-direction: row;
+  justify-content:space-between;
   background: black;
   width: 100%;
   display: flex;
@@ -16,12 +23,31 @@ body{
   font-size: 20px;
 }
 
+.chatmenu{
+  cursor: pointer;
+}
+
+.menu{
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 150px;
+  list-style: none;
+  background: #eee;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .list{
   margin-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
   text-align: left;
   border-bottom : 1px solid #000;
+}
+
+.list > h4 {
+  cursor: pointer;
 }
 
 .modal{
