@@ -8,25 +8,28 @@ function App() {
   
   let [내용, 내용변경] = useState(["남자코트는 여기가 짱", "강남 우동 맛있어요", "재미있는 책이 있어요"]);
 
-  let [따봉, 따봉변경] = useState([0, 0, 0])
+  let [따봉, 따봉변경] = useState(0);
 
-  let [modal, modal변경] = useState(false)
+  let [modal, modal변경] = useState(false);
 
-  let [menu, menu변경] = useState(false)
+  let [menu, menu변경] = useState(false);
+
+  let [누른제목,누른제목변경] = useState(0);
+
+  let [입력값, 입력값변경] = useState('');
 
   function 반복된UI(){
     var 어레이 = [];
 
     for(var i=0; i<글제목.length; i++){
-      어레이.push(<div className="list">
-      <h4 onClick={ 상태전환 }>{ 글제목[i] }</h4> 
-      <span className="like">👍 {따봉[i]}</span>
-      <p>{ 내용[i] }</p>
+      어레이.push(<div className="list" key={i}>
+      <h4 onClick={  () => { 누른제목변경(i) } } >{ 글제목[i] }</h4>
+      <p onClick={ 상태전환 }>{ 내용[i] }</p>
     </div>)
     }
 
     return 어레이
-  }
+  };
 
 function 상태전환(){
 
@@ -75,27 +78,16 @@ function 상태전환(){
         }
       </div>
       <button onClick={ 글제목정렬 }>짠</button>
+      <반복된UI 글제목={글제목} 누른제목={누른제목}/>
 
-
-      <반복된UI />
-
-
-      {/*     
-        {
-           글제목.map(function(글){
-             return (<div className="list">
-             <h4 onClick={ 상태전환 }>{ 글 }</h4>
-             <p>2월 18일 발행</p>
-           </div>)
-           })
-        } */}
-    
-
-
+        <div className="publish">
+          <input />
+          <button>저장</button>
+        </div>
 
       {
       modal == true ? 
-      <Modal 글제목={글제목}></Modal> :
+      <Modal 글제목={글제목} 누른제목={누른제목}/> :
       null
       }
       
@@ -103,10 +95,12 @@ function 상태전환(){
   );
 }
 
+
+
 function Modal(props){
   return (
     <div className="modal">
-    <h2>{ props.글제목[0] }</h2>
+    <h2>{ props.글제목[props.누른제목]}</h2>
     <p>날짜</p>
     <p>상세내용</p>
   </div>
