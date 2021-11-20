@@ -16,7 +16,9 @@ function App() {
 
   let [누른제목,누른제목변경] = useState(0);
 
-  let [입력값, 입력값변경] = useState('');
+  let [글제목저장, 글제목저장변경] = useState([]);
+  let [글내용저장, 글내용저장변경] = useState([]);
+
 
   function 반복된UI(){
     var 어레이 = [];
@@ -68,6 +70,31 @@ function 상태전환(){
     글제목변경(sortArray)
   }
 
+
+
+  function 글제목저장하기(e){
+   var title = e.target.value;
+   글제목저장변경(title)
+   console.log(글제목저장)
+  }
+  function 글내용저장하기(e){
+    var detail = e.target.value;
+    글내용저장변경(detail)
+    console.log(글내용저장)
+  }
+
+  function 글생성(){
+    var changeArray = [...글제목];
+    changeArray.unshift(글제목저장);
+    console.log(글제목저장)
+    글제목변경(changeArray);
+    var changedetail = [...내용];
+    changedetail.unshift(글내용저장);
+    내용변경(changedetail);
+    document.getElementsByClassName("titleInput").value="";
+    document.getElementsByClassName("detailInput").value="";
+
+  }
   return (
     <div className="App">
       <div className="black-nav">
@@ -81,8 +108,10 @@ function 상태전환(){
       <반복된UI 글제목={글제목} 누른제목={누른제목}/>
 
         <div className="publish">
-          <input />
-          <button>저장</button>
+          <input className="titleInput" onChange={ 글제목저장하기 }/>
+          <input className="detailInput" onChange={ 글내용저장하기 }/>
+        
+          <button onClick={ 글생성 }>저장</button>
         </div>
 
       {
