@@ -104,7 +104,8 @@ function 상태전환(){
           menu == true ? <Menu /> : null
         }
       </div>
-      <button onClick={ 글제목정렬 }>짠</button>
+      <Profile />
+      <button onClick={ 글제목정렬 }>정렬</button>
       <반복된UI 글제목={글제목} 누른제목={누른제목}/>
 
         <div className="publish">
@@ -144,4 +145,31 @@ function Menu(){
   )
 }
 
+
 export default App;
+
+class Profile extends React.Component {
+  constructor(){
+    super()
+    this.state={ name:'주화', age:30 }
+  }
+
+  changechinese(){
+    this.setState( { name : '柱火' })
+  }
+
+  changeEng = () => { this.setState( { name:'juhwa' } ) }
+
+  render(){
+    return(
+      <div>
+        <h3>프로필</h3>
+        <p>저는 { this.state.name } 입니다.</p>
+        <button onClick={ ()=>{ this.setState( { name : 'kenna'} )} }>영어이름은</button>
+        <button onClick={ ()=>{ this.setState( this.changechinese.bind(this) )} }>한자이름은</button>
+        <button onClick={ ()=>{ this.setState( this.changeEng )} }>영문명은</button>
+      </div>
+    )
+  }
+
+}
