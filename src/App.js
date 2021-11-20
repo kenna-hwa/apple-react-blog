@@ -24,9 +24,9 @@ function App() {
     var 어레이 = [];
 
     for(var i=0; i<글제목.length; i++){
-      어레이.push(<div className="list" key={i}>
-      <h4 onClick={  () => { 누른제목변경(i) } } >{ 글제목[i] }</h4>
-      <p onClick={ 상태전환 }>{ 내용[i] }</p>
+      어레이.push(<div className="list" key={i}  onClick={ 상태전환 }>
+      <h4>{ 글제목[i] }</h4>
+      <p >{ 내용[i] }</p>
     </div>)
     }
 
@@ -106,7 +106,7 @@ function 상태전환(){
       </div>
       <Profile />
       <button onClick={ 글제목정렬 }>정렬</button>
-      <반복된UI 글제목={글제목} 누른제목={누른제목}/>
+      <반복된UI 글제목순서 = {글제목.length} 글제목={글제목} 누른제목={누른제목}/>
 
         <div className="publish">
           <input className="titleInput" onChange={ 글제목저장하기 }/>
@@ -130,8 +130,8 @@ function 상태전환(){
 function Modal(props){
   return (
     <div className="modal">
-    <h2>{ props.글제목[props.누른제목]}</h2>
-    <p>날짜</p>
+    <h2>{ props.글제목[props.글제목순서] }</h2>
+    <p>날짜</p>    
     <p>상세내용</p>
   </div>
   )
